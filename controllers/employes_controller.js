@@ -53,6 +53,29 @@ const creerEmploye = async (req, res) => {
         })
 }
 
+// Modifier un employe
+const modifierEmploye = async (req, res) => {
+    const { id } = req.params
+
+    Employe.update({
+        where: {
+            numEmploye: parseInt(id)
+        },
+        data: req.body
+    })
+        .then(() => {
+            res.status(200).send({
+                message:'Employe modifié'
+            })
+        })
+        .catch((error) =>{
+            res.status(500).send({
+                message: error.message || "Erreur lors du modification de l'employé"
+            })
+        })
+}
+
+exports.modifierEmploye = modifierEmploye;
 exports.creerEmploye = creerEmploye;
 exports.getEmployeById = getEmployeById;
 exports.getAllEmployes = getAllEmployes;
