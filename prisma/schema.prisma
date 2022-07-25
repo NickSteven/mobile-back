@@ -13,5 +13,6 @@ datasource db {
 model Employe {
   numEmploye Int @id @default(autoincrement())
   nom String
+  adresse String
   tauxHoraire Int
 }
