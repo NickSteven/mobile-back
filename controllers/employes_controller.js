@@ -75,6 +75,28 @@ const modifierEmploye = async (req, res) => {
         })
 }
 
+// Supprimer un employe
+const supprimerEmploye = async (req, res) => {
+    const { id } = req.params
+
+    Employe.delete({
+        where: {
+            numEmploye: parseInt(id)
+        }
+    })
+        .then(() => {
+            res.status(200).send({
+                message: "Employé supprimé"
+            })
+        })
+        .catch((error) => {
+            res.status(500).send({
+                message: error.message || "Erreur lors du supression de l'employé"
+            })
+        })
+}
+
+exports.supprimerEmploye = supprimerEmploye;
 exports.modifierEmploye = modifierEmploye;
 exports.creerEmploye = creerEmploye;
 exports.getEmployeById = getEmployeById;
