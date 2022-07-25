@@ -35,5 +35,24 @@ const getEmployeById = async (req, res) => {
         })
 }
 
+// Créer un nouveau employe
+const creerEmploye = async (req, res) => {
+
+    Employe.create({
+        data: req.body
+    })
+        .then(() => {
+            res.status(201).send({
+                message:'Employé ajouté',
+            })
+        })
+        .catch((error) => {
+            res.status(500).send({
+                message: error.message || 'Une erreur est survenue lors du création de l\'employe',
+            })
+        })
+}
+
+exports.creerEmploye = creerEmploye;
 exports.getEmployeById = getEmployeById;
 exports.getAllEmployes = getAllEmployes;
