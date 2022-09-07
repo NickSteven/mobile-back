@@ -15,4 +15,23 @@ model Employe {
   nom String
   adresse String
   tauxHoraire Int
+  entreprise Entreprise @relation(fields: [numEntr], references: [numEntreprise])
+  numEntr Int
+  travail Travail[]
+}
+
+model Entreprise {
+  numEntreprise Int @id @default(autoincrement())
+  design String
+  employes Employe[]
+  travail Travail[]
+}
+
+model Travail {
+  idTravail Int @id @default(autoincrement())
+  entreprise Entreprise @relation(fields: [numEntr], references: [numEntreprise])
+  numEntr Int
+  employe Employe @relation(fields: [numEmplo], references: [numEmploye])
+  numEmplo Int
+  nbheures Int
 }
