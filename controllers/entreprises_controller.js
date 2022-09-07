@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 const {entreprise: Entreprise} = prisma;
 
 const getAllEntreprises = async (req, res) => {
-  Entreprise.finMany()
+  Entreprise.findMany()
     .then((data) => {
       res.status(200).send(data);
     })
